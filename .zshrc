@@ -102,8 +102,10 @@ source $ZSH/oh-my-zsh.sh
 # The next line updates PATH for the Google Cloud SDK.
 
 # The next line enables shell command completion for gcloud.
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+if [ -d "/usr/local/Caskroom/google-cloud-sdk" ]; then
+	source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+	source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+fi
 
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
