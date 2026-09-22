@@ -72,6 +72,7 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+unsetopt autocd
 
 # User configuration
 
