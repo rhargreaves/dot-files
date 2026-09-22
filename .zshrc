@@ -112,3 +112,7 @@ export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 
+alias vim="nvim"
+
+export EDITOR="nvim"
+export VIEWER="nvim"
