@@ -4,8 +4,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 TARGETS=(
-  ".bash_aliases"
-  ".bash_aliases_linux"
   ".config/opencode"
   ".local/bin/oc-approve-cmd"
   ".pi/agent/AGENTS.md"
