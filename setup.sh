@@ -9,6 +9,7 @@ TARGETS=(
   ".pi/agent/AGENTS.md"
   ".pi/agent/extensions/quit-aliases.ts"
   ".pi/agent/settings.json"
+  ".pi/agent/themes/duskfox.json"
   ".tmux.conf"
   ".zshrc"
 )

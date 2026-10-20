@@ -4,5 +4,11 @@
   "autocompleteMaxVisible": 7,
   "fullscreenWheelScrollLines": 5,
   "followUpMode": "all",
-  "tuiMode": "regular"
+  "tuiMode": "regular",
+  "lastChangelogVersion": "1.3.0",
+  "packages": [
+    "npm:pi-sandbox"
+  ],
+  "defaultProvider": "openrouter",
+  "defaultModel": "google/gemini-3.7-flash"
 }
