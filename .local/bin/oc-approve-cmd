@@ -1,0 +1,40 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# dependencies = ["json5"]
+# ///
+
+import json
+import sys
+from pathlib import Path
+
+import json5
+
+
+CONFIG_PATH = Path.home() / ".config/opencode/opencode.jsonc"
+
+
+def main() -> int:
+    if len(sys.argv) != 2 or not sys.argv[1].strip():
+        print(f'usage: {Path(sys.argv[0]).name} "command pattern"', file=sys.stderr)
+        return 2
+
+    command = sys.argv[1]
+    config = json5.loads(CONFIG_PATH.read_text())
+    try:
+        approvals = config["permission"]["bash"]
+    except (KeyError, TypeError):
+        print(f"error: permission.bash not found in {CONFIG_PATH}", file=sys.stderr)
+        return 1
+
+    if command in approvals:
+        print(f"already approved: {command}")
+        return 0
+
+    approvals[command] = "allow"
+    CONFIG_PATH.write_text(json.dumps(config, indent="\t") + "\n")
+    print(f"approved: {command}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
