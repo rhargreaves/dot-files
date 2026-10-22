@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 TARGETS=(
   ".config/opencode"
-  ".local/bin/oc-approve-cmd"
+  ".local/bin/ai-approve-cmd"
   ".pi/agent/AGENTS.md"
   ".pi/agent/extensions/quit-aliases.ts"
   ".pi/agent/settings.json"
@@ -13,6 +13,8 @@ TARGETS=(
   ".tmux.conf"
   ".zshrc"
 )
+
+[[ -L "$HOME/.local/bin/oc-approve-cmd" ]] && rm "$HOME/.local/bin/oc-approve-cmd"
 
 for rel in "${TARGETS[@]}"; do
   src="$SCRIPT_DIR/$rel"

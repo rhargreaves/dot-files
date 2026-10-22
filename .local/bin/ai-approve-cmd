@@ -1,0 +1,61 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# dependencies = ["json5"]
+# ///
+
+import json
+import sys
+from pathlib import Path
+
+import json5
+
+
+CONFIG_PATHS = {
+    "OpenCode": Path.home() / ".config/opencode/opencode.jsonc",
+    "Pi": Path.home() / ".pi/agent/extensions/pi-permission-system/config.json",
+}
+
+
+def load_config(path: Path) -> tuple[dict, dict, str]:
+    text = path.read_text()
+    config = json5.loads(text)
+    try:
+        approvals = config["permission"]["bash"]
+    except (KeyError, TypeError) as error:
+        raise ValueError(f"permission.bash not found in {path}") from error
+
+    if not isinstance(approvals, dict):
+        raise ValueError(f"permission.bash is not an object in {path}")
+
+    indent = "\t" if "\n\t" in text else "  "
+    return config, approvals, indent
+
+
+def main() -> int:
+    if len(sys.argv) != 2 or not sys.argv[1].strip():
+        print(f'usage: {Path(sys.argv[0]).name} "command pattern"', file=sys.stderr)
+        return 2
+
+    command = sys.argv[1]
+    configs = {}
+    try:
+        for name, path in CONFIG_PATHS.items():
+            configs[name] = (*load_config(path), path)
+    except (OSError, ValueError, json5.JSON5DecodeError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+
+    for name, (config, approvals, indent, path) in configs.items():
+        if command in approvals:
+            print(f"{name}: already approved: {command}")
+            continue
+
+        approvals[command] = "allow"
+        path.write_text(json.dumps(config, indent=indent) + "\n")
+        print(f"{name}: approved: {command}")
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
