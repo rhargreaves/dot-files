@@ -4,8 +4,6 @@
 
 - Prefer local checkouts over API calls when inspecting code. Do not overwrite unstaged changes when updating a checkout.
 - Pull the latest changes before working. Stash local changes first and restore them after the pull.
-- Always create draft merge requests. Never create a non-draft merge request directly.
-- Force-push with lease only when a merge request is still a draft and has no reviewer comments. Otherwise, add a new commit.
 - Do not add comments that repeat what the code says. Use clear names and small functions or modules.
 - Respect the single-responsibility principle.
 - Add comments only when the approach has no clear precedent.
