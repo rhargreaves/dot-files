@@ -5,10 +5,10 @@
   "fullscreenWheelScrollLines": 5,
   "followUpMode": "all",
   "tuiMode": "regular",
-  "lastChangelogVersion": "1.3.0",
+  "lastChangelogVersion": "1.4.0",
   "packages": [
     "npm:pi-sandbox"
   ],
   "defaultProvider": "openrouter",
-  "defaultModel": "google/gemini-3.7-flash"
+  "defaultModel": "deepseek/deepseek-v4.1-flash"
 }
